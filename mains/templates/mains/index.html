@@ -1,4 +1,5 @@
 {% extends 'mains/template.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
@@ -8,7 +9,7 @@
     <div class="hero-container">
       
       <h1>Unyime Etim</h1>
-      <h2>Hi, I'm a web developer from Uyo, Nigeria</h2>
+      <h2>Full Stack Developer</h2>
      
       <a href="#about" class="btn-scroll scrollto" title="Scroll Down"><i class="bx bx-chevron-down"></i></a>
     </div>
@@ -24,17 +25,23 @@
           <span>About Me</span>
           <h2>About Me</h2>
           <p>
-            My name is Unyime Etim, and this portfolio is a representation of 
-            all that I've learned as an Engineering student and a Web Developer. 
+            Hi, I'm Unyime Etim, a full stack web developer from Uyo, Nigeria.  
+            
           </p>
           <p>
-            As a developer, I specialize in building user-friendly websites and web applications
+            I am an innovative and deadline-driven developer with 1+ years of experience 
+            designing and developing user-friendly and mobile responsive web applications
             that will give your business an extensive online presence.
           </p>
           <p>
+            I think algorithmically, and delight in continuous learning of new technologies to enable me serve you 
+            better. 
+          </p>
+          <p>
             I am currently available for freelance work, so if you would like to have something
-            set up, or just fancy saying hello then I will be very happy to hear from you.  
-            You can reach me on my email <a href="mailto:unyime_etim58@yahoo.com">here</a>, or send a message through <a href="#contact">my contact form</a>. 
+            set up, or just fancy saying hello, then I will be very happy to hear from you.  
+            You can reach me on my email <a href="mailto:unyime_etim58@yahoo.com">here</a>, or 
+            send a message through <a href="#contact">my contact form</a>. 
           </p>
         </div>
 
@@ -162,7 +169,7 @@
         <div class="section-title">
           <span>My Resume</span>
           <h2>My Resume</h2>
-          <p><a href="mailto:unyime_etim58@yahoo.com">Contact me</a> if you need a full resume</p>
+          <p>You can download my full resume <a href="mailto:unyime_etim58@yahoo.com">here</a></p>
         </div>
 
         <div class="row">
@@ -191,8 +198,8 @@
               <p><em>University of Uyo, Nigeria</em></p>
               <ul>
                 <li>Majored in the branch of Chemical Engineering</li>
-                <li>Final research project focused on analysing the viability of ruber latex as an effective 
-                  replacement/supplement to foreign manufactured binders in paint formulation
+                <li>The final research project focused on analyzing the viability of rubber latex as an effective 
+                  replacement/supplement to foreign-manufactured binders in paint formulation
                 </li>
               </ul>
             </div>
@@ -520,31 +527,29 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            {% for message in messages %}
+					    <p>{{message}}</p>
+				    {% endfor %}
+            <form method="POST" action="">
+              {% csrf_token %}
+
               <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
+                <div class="col-md-6">{{form.first_name|as_crispy_field}}</div>
+                <div class="col-md-6">{{form.last_name|as_crispy_field}}</div>
               </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
+
+              <div class="form-row">
+                <div class="col-md-12"> {{form.email|as_crispy_field}}</div>
               </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="6" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validate"></div>
+
+              <div class="form-row">
+                <div class="col-md-12">{{form.subject|as_crispy_field}}</div>
               </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <div class="form-row">
+                <div class="col-md-12">{{form.message|as_crispy_field}}</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class=" btn btn-success">Send Message</button></div>
             </form>
           </div>
 
