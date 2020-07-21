@@ -407,7 +407,8 @@
           </div>
 
           <div class="col-lg-6">
-            {% for message in messages %}
+            <div class="contact-box">
+                {% for message in messages %}
 					    <p>{{message}}</p>
 				    {% endfor %}
             <form method="POST" action="">
@@ -431,6 +432,8 @@
               </div>
               <div class="text-center"><button type="submit" class=" btn btn-success">Send Message</button></div>
             </form>
+            </div>
+            
           </div>
 
         </div>

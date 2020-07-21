@@ -1,6 +1,6 @@
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "ABeeZee";
   color: #444444;
 }
 
@@ -14,7 +14,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Alegreya SC';
 }
 
 /*--------------------------------------------------------------
@@ -323,7 +323,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero h1 {
   margin: 0 0 10px 0;
   font-size: 64px;
-  font-family: "Satisfy", serif;
+  font-family: 'Alegreya SC';
   color: #fff;
 }
 
@@ -1314,7 +1314,7 @@ section {
   font-weight: 700;
   color: #fff;
   position: relative;
-  font-family: "Satisfy", serif;
+  font-family: 'Alegreya SC';
   padding: 0;
   margin: 0 0 15px 0;
 }
@@ -1367,6 +1367,14 @@ section {
 
   #info{
     text-align: center;
+  }
+
+  .contact-box{
+    margin-top: 17px;
+  }
+
+  .about-me{
+    margin-top: 17px;
   }
 
 }
