@@ -6,4 +6,4 @@ def blog(request):
     """this function handles the blog view"""
 
     context = {}
-    return render(request, 'blogs/blog.html', context)
+    return render(request, 'blogs/blogs.html', context)
