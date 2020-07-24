@@ -18,7 +18,7 @@ class Post(models.Model):
     featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
     content = models.CharField(max_length=20000000, null=True, blank=True)
     slug = models.SlugField(max_length=600, null=True, blank=True, unique=True)
-    tag = models.ManyToManyField(Tag, null=True, blank=True,)
+    #tag = models.ManyToManyField(Tag)
     
     def __str__(self):
         return self.title
@@ -31,3 +31,6 @@ class Comment(models.Model):
     comment_content = models.CharField(max_length=1000, null=True, blank=True)
     comment_reply = models.CharField(max_length=600, null=True, blank=True)
     post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name

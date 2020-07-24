@@ -45,9 +45,11 @@ INSTALLED_APPS = [
 
     #installed app
     'storages',
-    'crispy_forms'
+    'crispy_forms',
+    'django_summernote',
 ]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
