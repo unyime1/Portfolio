@@ -4,22 +4,36 @@
 
 {% block content %}
 
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <div class="site-heading">
-                <h1>Title</h1>
-                <span class="subheading"></span>
-                <span class="meta">
-                    Posted by Start Bootstrap on August 24, 2019
-                </span>
-              </div>
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1 style="font-size: 25px;">{{post.title}}</h1>
+              <span class="subheading"></span>
+              <span class="meta">
+                  Posted by {{post.author}} on {{post.date_published}}
+              </span> 
             </div>
           </div>
         </div>
-    </header>
+      </div>
+  </header>
+
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          {{post.content|safe}}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
 
 {% endblock content %}

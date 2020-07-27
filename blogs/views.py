@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 
 from .forms import *
+from .models import *
 
 # Create your views here.
 
 def blog(request):
     """this function handles the blog view"""
+    posts = Post.objects.all()
 
-    context = {}
-    return render(request, 'blogs/blogs.html', context)
+    context = {'posts':posts,}
+    return render(request, 'blogs/blogs.html', context) 
 
 
 def addPost(request):
@@ -26,3 +28,9 @@ def addPost(request):
     context = {'form':form,}
     return render(request, 'blogs/add_post.html', context)
 
+def postPage(request, post_id):
+    """this function handles the post pages"""
+    post = Post.objects.get(id=post_id)
+
+    context = {'post':post,}
+    return render(request, 'blogs/post.html', context)
