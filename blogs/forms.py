@@ -8,8 +8,8 @@ class postForm(ModelForm):
     """this form handles the addition of post to site"""
     title = forms.CharField(max_length=600, required=True, label='Title',
                 widget=forms.TextInput(attrs={'placeholder': 'Title'}))
-    slug = forms.CharField(max_length=600, required=True, label='Slug',
-                widget=forms.TextInput(attrs={'placeholder': 'Slug'}))
+    #slug = forms.CharField(max_length=600, required=True, label='Slug',
+               # widget=forms.TextInput(attrs={'placeholder': 'Slug'}))
     subtitle = forms.CharField(max_length=600, required=True, label='Subtitle',
                 widget=forms.TextInput(attrs={'placeholder': 'Subtitle'}))
     
@@ -20,4 +20,4 @@ class postForm(ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'subtitle', 'featured_image', 'content']
+        fields = ['title', 'subtitle', 'featured_image', 'content']

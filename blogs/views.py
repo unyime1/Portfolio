@@ -7,7 +7,7 @@ from .models import *
 
 def blog(request):
     """this function handles the blog view"""
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date_published')
 
     context = {'posts':posts,}
     return render(request, 'blogs/blogs.html', context) 
@@ -28,9 +28,10 @@ def addPost(request):
     context = {'form':form,}
     return render(request, 'blogs/add_post.html', context)
 
-def postPage(request, post_id):
+
+def postPage(request, slug_id):
     """this function handles the post pages"""
-    post = Post.objects.get(id=post_id)
+    post = Post.objects.get(slug=slug_id)
 
     context = {'post':post,}
     return render(request, 'blogs/post.html', context)
