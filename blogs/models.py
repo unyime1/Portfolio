@@ -12,8 +12,8 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=600, null=True, blank=True, unique=True)
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=600, null=True, blank=True, unique=True)
     subtitle = models.CharField(max_length=600, null=True, blank=True)
     date_published = models.DateTimeField(auto_now_add=True, null=True)
     featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
@@ -27,20 +27,29 @@ class Post(models.Model):
         if self.slug is None:
             self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
-
     
     def __str__(self):
         return self.title
 
+    @property
+    def imageURL(self):
+        """this function solves the error associated with empty image fields"""
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
     
 
 class Comment(models.Model):
+    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=True, blank=True)
     date_posted = models.DateTimeField(auto_now_add=True, null=True)
     website = models.CharField(max_length=100, null=True, blank=True)
     comment_content = models.CharField(max_length=1000, null=True, blank=True)
     comment_reply = models.CharField(max_length=600, null=True, blank=True)
-    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.SET_NULL)
+    
 
     def __str__(self):
         return self.name

@@ -17,10 +17,13 @@ def addPost(request):
     """this function returns the add post view"""
 
     form = postForm()
+    author = request.user
     if request.method == "POST":
         form = postForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('blog')
     else:
         form = postForm()
