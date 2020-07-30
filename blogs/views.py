@@ -32,7 +32,7 @@ def addPost(request):
 
 
 def updatePost(request, post_id):
-    """this function returns the add post view"""
+    """this function handles post updates"""
 
     post = Post.objects.get(id=post_id)
     form = postForm()
@@ -46,7 +46,7 @@ def updatePost(request, post_id):
     else:
         form = postForm(instance=post)
 
-    context = {'form':form,}
+    context = {}
     return render(request, 'blogs/add_post.html', context)
 
 
@@ -57,3 +57,12 @@ def postPage(request, slug_id):
 
     context = {'post':post,}
     return render(request, 'blogs/post.html', context)
+
+
+
+def deletePost(request, post_id):
+    """this function handles the removal of posts"""
+
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect('blog')
