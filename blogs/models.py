@@ -35,7 +35,7 @@ class Post(models.Model):
     def imageURL(self):
         """this function solves the error associated with empty image fields"""
         try:
-            url = self.image.url
+            url = self.featured_image.url
         except:
             url = ''
         return url
