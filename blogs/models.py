@@ -41,15 +41,3 @@ class Post(models.Model):
         return url
 
     
-
-class Comment(models.Model):
-    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.SET_NULL)
-    name = models.CharField(max_length=100, null=True, blank=True)
-    date_posted = models.DateTimeField(auto_now_add=True, null=True)
-    website = models.CharField(max_length=100, null=True, blank=True)
-    comment_content = models.CharField(max_length=1000, null=True, blank=True)
-    comment_reply = models.CharField(max_length=600, null=True, blank=True)
-    
-
-    def __str__(self):
-        return self.name

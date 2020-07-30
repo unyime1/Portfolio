@@ -17,7 +17,6 @@ def addPost(request):
     """this function returns the add post view"""
 
     form = postForm()
-    author = request.user
     if request.method == "POST":
         form = postForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,6 +29,26 @@ def addPost(request):
 
     context = {'form':form,}
     return render(request, 'blogs/add_post.html', context)
+
+
+def updatePost(request, post_id):
+    """this function returns the add post view"""
+
+    post = Post.objects.get(id=post_id)
+    form = postForm()
+    if request.method == "POST":
+        form = postForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('blog')
+    else:
+        form = postForm(instance=post)
+
+    context = {'form':form,}
+    return render(request, 'blogs/add_post.html', context)
+
 
 
 def postPage(request, slug_id):

@@ -35,6 +35,14 @@
   </article>
 
   <hr>
+  <div class="container">
+    <div class="row post-button">
+      <a href="{% url 'update_post' post.id %}"><button type="button" class="btn btn-info btn-sm">Update</button></a>
+  
+      <a href="#"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+    </div>
+  </div>
+  <hr>
 
   <div class="container">
     <div id="disqus_thread"></div>
