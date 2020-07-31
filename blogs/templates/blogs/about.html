@@ -8,18 +8,49 @@
     <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
         <div class="overlay"></div>
         <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-                <h1>Title</h1>
-                <span class="subheading"></span>
-                <span class="meta">
-                    Posted by Start Bootstrap on August 24, 2019
-                </span>
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1 class="page-header">About</h1>
+                        <span class="subheading"></span>
+                        <span class="meta">
+                        
+                        </span>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
     </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h5>Welcome</h5>
+                <p class="lead"> 
+                Hi, I'm Unyime Etim, a freelance blogger and web developer specializing in Python.
+                </p>
+                <p class="lead">
+                The software that powers this blog was written by myself as a personal project
+                using Python programming language with the <a href="https://www.djangoproject.com/">Django web framework</a>, and now that 
+                I'm in possession of such an interesting engine I have decided to make full use of it. 
+                </p>
+                <p class="lead">
+                The topics that I'll be writting about will mostly be related to web development, 
+                Windows 10 Operating System and tech.
+                 
+                </p>
+                <p class="lead">
+                Thanks for stopping by. If you have any question, comment, contribution, criticism, or just fancy saying hello
+                then I'll be incredibly happy to hear from you. You can contact me <a href="{% url 'home' %}">here</a>, or click <a href="mailto:unyime_etim58@yahoo.com">here</a> to send me 
+                an email.
+                </p>
+            </div>
+        </div>
+        </div>
+    </article>
+
+    <hr>
 
 {% endblock content %}

@@ -8,18 +8,35 @@
     <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
         <div class="overlay"></div>
         <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-                <h1>Title</h1>
-                <span class="subheading"></span>
-                <span class="meta">
-                    Posted by Start Bootstrap on August 24, 2019
-                </span>
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1 class="page-header">Contact</h1>
+                        <span class="subheading"></span>
+                        <span class="meta">
+                        
+                        </span>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
     </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="lead">
+                    Hi, thanks for stopping by. If you wish to contact me, you 
+                    can send a message through the contact form on <a href="{% url 'home' %}">my portfolio page</a>, or click <a href="mailto:unyime_etim58@yahoo.com">here</a> to send me 
+                    a quick email.
+                </p>
+            </div>
+        </div>
+        </div>
+    </article>
+
+    <hr>
 
 {% endblock content %}

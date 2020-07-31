@@ -10,7 +10,7 @@ from .decorators import *
 def blog(request):
     """this function handles the blog view"""
     posts = Post.objects.all().order_by('-date_published')
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 5)
     page = request.GET.get('page')
 
     
@@ -79,5 +79,21 @@ def postPage(request, slug_id):
 
     context = {'post':post,}
     return render(request, 'blogs/post.html', context)
+
+
+def aboutPage(request):
+    """this function handles the about page"""
+
+    context = {}
+    return render(request, 'blogs/about.html', context)
+
+
+def contactPage(request):
+    """this function handles the contact me page"""
+
+    context = {}
+    return render(request, 'blogs/contact.html', context)
+
+
 
 
