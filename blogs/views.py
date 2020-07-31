@@ -60,7 +60,7 @@ def updatePost(request, post_id):
     else:
         form = postForm(instance=post)
 
-    context = {}
+    context = {'form':form,}
     return render(request, 'blogs/add_post.html', context)
 
 
