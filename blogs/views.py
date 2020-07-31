@@ -49,7 +49,7 @@ def updatePost(request, post_id):
     """this function handles post updates"""
 
     post = Post.objects.get(id=post_id)
-    form = postForm()
+    form = postForm(instance=post)
     if request.method == "POST":
         form = postForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
