@@ -26,7 +26,7 @@
       <hr>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          {% for post in posts %}
+          {% for post in post_page %}
             <div class="post-preview">
               <a href="{% url 'posts' post.slug %}">
                 <h2 class="post-title" style="font-size: 25px; font-family:ABeeZee">
@@ -44,9 +44,7 @@
           {% endfor %}
           
           <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
+          {%	include	"blogs/pagination.html"	with	users=post_page	%}
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import *
 from .models import *
@@ -8,8 +9,18 @@ from .models import *
 def blog(request):
     """this function handles the blog view"""
     posts = Post.objects.all().order_by('-date_published')
+    paginator = Paginator(posts, 2)
+    page = request.GET.get('page')
 
-    context = {'posts':posts,}
+    
+    try:
+        post_page = paginator.page(page)
+    except PageNotAnInteger:
+        post_page = paginator.page(1)
+    except EmptyPage:
+        post_page = paginator.page(paginator.num_pages)
+
+    context = {'posts':posts, 'post_page':post_page,}
     return render(request, 'blogs/blogs.html', context) 
 
 
