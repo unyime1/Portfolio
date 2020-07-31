@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import *
 from .models import *
+from .decorators import *
 
 # Create your views here.
 
@@ -24,6 +25,7 @@ def blog(request):
     return render(request, 'blogs/blogs.html', context) 
 
 
+@admin_only
 def addPost(request):
     """this function returns the add post view"""
 
@@ -42,6 +44,7 @@ def addPost(request):
     return render(request, 'blogs/add_post.html', context)
 
 
+@admin_only
 def updatePost(request, post_id):
     """this function handles post updates"""
 
@@ -61,6 +64,14 @@ def updatePost(request, post_id):
     return render(request, 'blogs/add_post.html', context)
 
 
+@admin_only
+def deletePost(request, post_id):
+    """this function handles the removal of posts"""
+
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect('blog')
+    
 
 def postPage(request, slug_id):
     """this function handles the post pages"""
@@ -70,10 +81,3 @@ def postPage(request, slug_id):
     return render(request, 'blogs/post.html', context)
 
 
-
-def deletePost(request, post_id):
-    """this function handles the removal of posts"""
-
-    post = Post.objects.get(id=post_id)
-    post.delete()
-    return redirect('blog')

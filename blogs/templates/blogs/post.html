@@ -35,14 +35,17 @@
   </article>
 
   <hr>
-  <div class="container">
-    <div class="row post-button">
-      <a href="{% url 'update_post' post.id %}"><button type="button" class="btn btn-info btn-sm">Update</button></a>
-  
-      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
+
+  {% if request.user.is_staff %}
+    <div class="container">
+      <div class="row post-button">
+        <a href="{% url 'update_post' post.id %}"><button type="button" class="btn btn-info btn-sm">Update</button></a>
+    
+        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
+      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
+  {% endif %}
 
   <!--- Modal For Delete Post-->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
