@@ -13,6 +13,7 @@ class Contact(models.Model):
     def __str__(self):
         return str(self.first_name)
 
+
 class Project(models.Model):
     """this class handles the contact form table"""
     title = models.CharField(max_length=500, null=True, blank=True)
@@ -23,3 +24,12 @@ class Project(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    @property
+    def imageURL(self):
+        """this function solves the error associated with empty image fields"""
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url

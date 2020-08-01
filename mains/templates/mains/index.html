@@ -314,48 +314,46 @@
 
           <div class="row portfolio-container" >
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <div class="portfolio-img"><img src="{% static 'images/portfolio/portfolio-1.png' %}" class="img-fluid" alt=""></div>
-              <div class="portfolio-info">
-                <h4>Blogging Application (Wordpress)</h4>
-                <p>App</p>
-                <a href="{% static 'images/portfolio/portfolio-1.png' %}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            {% for project in projects %}
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-img"><img src="{{project.imageURL }}" class="img-fluid" alt=""></div>
+                <div class="portfolio-info">
+                  <h4> {{project.title}} </h4>
+                  <p>{{project.category|title}}</p>
+                  {% if request.user.is_staff %}
+                    <a href="{% url 'update_project' project.id %}">Update</a>
+                    <a href="" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                  {% endif %}
+                  <a href="{{project.imageURL }}" data-gall="portfolioGallery" class="venobox preview-link" title="{{project.category|title}}"><i class="bx bx-plus"></i></a>
+                  <a href=" {{project.link}} " class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                
+                </div>
               </div>
-            </div>
-  
-           
-  
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <div class="portfolio-img"><img src="{% static 'images/portfolio/portfolio-3.png' %}" class="img-fluid" alt=""></div>
-              <div class="portfolio-info">
-                <h4>Blogging Application (Flask)</h4>
-                <p>App</p>
-                <a href="{% static 'images/portfolio/portfolio-3.png' %}" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+
+
+              <!--- Modal For Delete Project-->
+              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete this project?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <form action="{% url 'delete_project' project.id %}" method="POST">
+                              {% csrf_token %}
+                              <input class="btn btn-danger" type="submit" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                </div>
               </div>
-            </div>
+              <!--end of modal-->
+            {% endfor %}
   
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-              <div class="portfolio-img"><img src="{% static 'images/portfolio/portfolio-4.png' %}" class="img-fluid" alt=""></div>
-              <div class="portfolio-info">
-                <h4> Ecommerce Application (Django)</h4>
-                <p>Card</p>
-                <a href="{% static 'images/portfolio/portfolio-4.png' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-  
-  
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <div class="portfolio-img"><img src="{% static 'images/portfolio/portfolio-2.png' %}" class="img-fluid" alt=""></div>
-              <div class="portfolio-info">
-                <h4>Customer Management System (Django)</h4>
-                <p>Web</p>
-                <a href="{% static 'images/portfolio/portfolio-2.png' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -363,6 +361,9 @@
 
         
       </div>
+
+      
+
     </section><!-- End My Portfolio Section -->
 
     
