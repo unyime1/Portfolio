@@ -12,3 +12,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return str(self.first_name)
+
+class Project(models.Model):
+    """this class handles the contact form table"""
+    title = models.CharField(max_length=500, null=True, blank=True)
+    category = models.CharField(max_length=500, null=True, blank=True)
+    link = models.CharField(max_length=500, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True) #, upload_to='images/'
+    
+
+    def __str__(self):
+        return str(self.title)

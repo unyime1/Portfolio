@@ -1,0 +1,67 @@
+{% extends 'blogs/blog-template.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+    <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+                <h1 style="font-size: 50px;">Add Project</h1>
+                <span class="subheading"></span>
+            
+            </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.title|as_crispy_field}}
+                        </div>
+                        
+                    </div>
+
+                   
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.category|as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.link|as_crispy_field}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.image|as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-primary">Save</button> 
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <hr>
+
+{% endblock %}

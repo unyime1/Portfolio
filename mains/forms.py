@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Contact
+from .models import *
 
 
 class ContactForm(ModelForm):
@@ -19,3 +19,22 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact 
         fields = '__all__' 
+
+
+
+class projectForm(ModelForm):
+    """this form handles the addition of post to site"""
+    title = forms.CharField(max_length=300, required=True, label='Title',
+                widget=forms.TextInput(attrs={'placeholder': 'Title'}))
+ 
+    category = forms.CharField(max_length=300, required=True, label='Category',
+                widget=forms.TextInput(attrs={'placeholder': 'Category'}))
+
+    link = forms.CharField(max_length=300, required=True, label='Link',
+                widget=forms.TextInput(attrs={'placeholder': 'Link'}))
+    
+    image = forms.ImageField()
+
+    class Meta:
+        model = Project
+        fields = '__all__'

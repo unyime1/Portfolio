@@ -20,3 +20,20 @@ def home(request):
 
     context = {'form':form,}
     return render(request, 'mains/index.html', context)
+
+
+def addProjects(request):
+    """this function handles the add project view"""
+    form = projectForm()
+    
+    if request.method == 'POST':
+        form = projectForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save()
+            return redirect('project')
+            messages.success(request, 'Your project is saved')
+    else:
+        form = projectForm()
+
+    context = {'form':form,}
+    return render(request, 'mains/projects-form.html', context)

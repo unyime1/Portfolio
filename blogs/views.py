@@ -95,5 +95,3 @@ def contactPage(request):
     return render(request, 'blogs/contact.html', context)
 
 
-
-
