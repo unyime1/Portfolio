@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django import forms
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 from .models import *
 
 
@@ -18,7 +19,7 @@ class ContactForm(ModelForm):
 
     class Meta:
         model = Contact 
-        fields = '__all__' 
+        fields = '__all__'  
 
 
 
@@ -37,4 +38,22 @@ class projectForm(ModelForm):
 
     class Meta:
         model = Project
+        fields = '__all__'
+
+
+class testimonialForm(ModelForm):
+    """this form handles the addition of post to site"""
+    name = forms.CharField(max_length=600, required=True, label='Name',
+                widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+ 
+    business = forms.CharField(max_length=600, required=True, label='Business',
+                widget=forms.TextInput(attrs={'placeholder': 'Business'}))
+    
+    image = forms.ImageField()
+
+    content = forms.CharField(max_length=20000000, required=True, label='Content',
+                widget=SummernoteWidget())
+
+    class Meta:
+        model = Testimonial
         fields = '__all__'

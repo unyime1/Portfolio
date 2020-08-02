@@ -13,6 +13,7 @@
         {% if request.user.is_staff %}
         <li><a href="{% url 'add_post' %}">Add Post</a></li>
         <li><a href="{% url 'project' %}">Add Project</a></li>
+        <li><a href="{% url 'testimonial' %}">Add Testimonial</a></li>
         {% endif %}
 
       </ul>

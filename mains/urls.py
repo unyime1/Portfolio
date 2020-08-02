@@ -8,4 +8,7 @@ urlpatterns = [
     path('project/', views.addProjects, name='project'),
     path('update/<str:project_id>/', views.updateProject, name='update_project'),
     path('delete/<str:project_id>/', views.deleteProject, name='delete_project'),
+    path('testimonial/', views.addTestimonial, name='testimonial'),
+    path('update_testimonial/<str:testimonial_id>/', views.updateTestimonial, name='update_testimonial'),
+    path('delete_testimonial/<str:testimonial_id>/', views.deleteTestimonial, name='delete_testimonial'),
 ] 

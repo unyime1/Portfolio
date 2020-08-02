@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-                <h1 style="font-size: 50px;">Add Project</h1>
+                <h1 style="font-size: 50px;">Add Testimonial</h1>
                 <span class="subheading"></span>
             
             </div>
@@ -31,7 +31,7 @@
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            {{form.title|as_crispy_field}}
+                            {{form.name|as_crispy_field}}
                         </div>
                         
                     </div>
@@ -40,13 +40,7 @@
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            {{form.category|as_crispy_field}}
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            {{form.link|as_crispy_field}}
+                            {{form.business|as_crispy_field}}
                         </div>
                     </div>
                     
@@ -54,6 +48,16 @@
                         <div class="col-md-12">
                             {{form.image|as_crispy_field}}
                         </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                {{form.content}}
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div class="form-row">

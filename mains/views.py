@@ -9,6 +9,8 @@ from blogs.decorators import *
 def home(request):
     """this function handles the main view"""
     projects = Project.objects.all()
+    testimonials = Testimonial.objects.all()
+
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -20,7 +22,7 @@ def home(request):
     else:
         form = ContactForm()
 
-    context = {'form':form, 'projects':projects,}
+    context = {'form':form, 'projects':projects, 'testimonials':testimonials,}
     return render(request, 'mains/index.html', context)
 
 
@@ -51,7 +53,7 @@ def updateProject(request, project_id):
         form = projectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('project')
     else:
         form = projectForm(instance=project)
 
@@ -65,5 +67,49 @@ def deleteProject(request, project_id):
 
     project = Project.objects.get(id=project_id)
     project.delete()
+    return redirect('home')
+
+
+def addTestimonial(request):
+    """this function handles the addition of testimonials"""
+    form = testimonialForm()
+    
+    if request.method == 'POST':
+        form = testimonialForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            form.save()
+            return redirect('testimonial')
+            messages.success(request, 'Your testimonial is saved')
+    else:
+        form = testimonialForm()
+
+    context = {'form':form,}
+    return render(request, 'mains/testimonial.html', context)
+
+
+@admin_only
+def updateTestimonial(request, testimonial_id):
+    """this function handles the update of testimonials"""
+
+    testimonial = Testimonial.objects.get(id=testimonial_id)
+    form = testimonialForm(instance=testimonial)
+    if request.method == "POST":
+        form = testimonialForm(request.POST, request.FILES, instance=testimonial)
+        if form.is_valid():
+            form.save()
+            return redirect('testimonial')
+    else:
+        form = testimonialForm(instance=testimonial)
+
+    context = {'form':form,}
+    return render(request, 'mains/testimonial.html', context)
+
+
+@admin_only
+def deleteTestimonial(request, testimonial_id):
+    """this function handles the removal of testimonials"""
+
+    testimonial = Testimonial.objects.get(id=testimonial_id)
+    testimonial.delete()
     return redirect('home')
 

@@ -255,38 +255,38 @@
       </div>
     </section><!-- End My Services Section -->
 
+    {% if testimonials %}
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
       <div class="container">
 
         <div class="owl-carousel testimonials-carousel">
 
-          <div class="testimonial-item">
-            <img src="{% static 'images/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
-            <h3>Jena Karlis</h3>
-            <h4>Store Owner</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
+          {% for testimonial in testimonials %}
+            <div class="testimonial-item">
+              <img src="{{testimonial.imageURL}}" class="testimonial-img" alt="">
+              <h3>{{testimonial.name|title}}</h3>
+              <h4>{{testimonial.business}}</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {{testimonial.content|safe}}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              {% if request.user.is_staff %}
+                <a href="{% url 'update_testimonial' testimonial.id %}">Update</a>
+                
+              {% endif %}
+            </div>
 
-          <div class="testimonial-item">
-            <img src="{% static 'images/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
-            <h3>Matt Brandon</h3>
-            <h4>Freelancer</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
+
+            
+          {% endfor %}
 
         </div>
 
       </div>
     </section><!-- End Testimonials Section -->
+    {% endif %}
 
     <!-- ======= My Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -414,9 +414,9 @@
 
           <div class="col-lg-6">
             <div class="contact-box">
-                {% for message in messages %}
-					    <p>{{message}}</p>
-				    {% endfor %}
+              {% for message in messages %}
+					      <p>{{message}}</p>
+				      {% endfor %}
             <form method="POST" action="">
               {% csrf_token %}
 
