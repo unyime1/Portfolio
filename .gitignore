@@ -120,3 +120,4 @@ secrets.py
 static/images/
 static/vendor/
 todo.txt
+cloud_sql_proxy.exe
