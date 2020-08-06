@@ -13,8 +13,8 @@ class Tag(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    title = models.CharField(max_length=600, null=True, blank=True, unique=True)
-    subtitle = models.CharField(max_length=600, null=True, blank=True)
+    title = models.CharField(max_length=200, null=True, blank=True, unique=True)
+    subtitle = models.CharField(max_length=200, null=True, blank=True)
     date_published = models.DateTimeField(auto_now_add=True, null=True)
     featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
     content = models.CharField(max_length=20000000, null=True, blank=True)
