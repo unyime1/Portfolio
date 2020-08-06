@@ -120,4 +120,4 @@ secrets.py
 static/images/
 static/vendor/
 todo.txt
-cloud_sql_proxy.exe
+mysqlclient-1.4.6-cp38-cp38-win32.whl
