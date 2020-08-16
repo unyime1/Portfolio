@@ -11,18 +11,26 @@ def home(request):
     projects = Project.objects.all()
     testimonials = Testimonial.objects.all()
 
-    form = ContactForm()
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid(): 
-            form.save()
-            name =  form.cleaned_data.get('first_name').capitalize()
-            messages.success(request, 'Hello' + ' ' + name + ',' + ' thanks for getting in touch. I will respond to you shortly. ')
-            return redirect('home')
-    else:
-        form = ContactForm()
+        #get both the username and password
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
 
-    context = {'form':form, 'projects':projects, 'testimonials':testimonials,}
+        contact = Contact.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message,
+        )
+        contact.save()
+
+        
+        messages.info(request, 'Hello ' + name.title() + ', your message has been sent. I will get back to you shortly.')
+        return redirect('home')
+
+    context = {'projects':projects, 'testimonials':testimonials,}
     return render(request, 'mains/index.html', context)
 
 

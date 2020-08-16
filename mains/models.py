@@ -4,8 +4,7 @@ from django.db import models
 
 class Contact(models.Model):
     """this class handles the contact form table"""
-    first_name = models.CharField(max_length=200, null=True)
-    last_name = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
     subject = models.CharField(max_length=200, null=True)
     message = models.TextField(null=True)
