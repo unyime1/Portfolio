@@ -10,7 +10,7 @@ class Contact(models.Model):
     message = models.TextField(null=True)
 
     def __str__(self):
-        return str(self.first_name)
+        return str(self.name)
 
 
 class Project(models.Model):

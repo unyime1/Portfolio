@@ -51,7 +51,7 @@ def addProjects(request):
     return render(request, 'mains/projects-form.html', context)
 
 
-@admin_only
+
 def updateProject(request, project_id):
     """this function handles post updates"""
 
@@ -69,7 +69,7 @@ def updateProject(request, project_id):
     return render(request, 'mains/projects-form.html', context)
 
 
-@admin_only
+
 def deleteProject(request, project_id):
     """this function handles the removal of projects"""
 
@@ -95,7 +95,7 @@ def addTestimonial(request):
     return render(request, 'mains/testimonial.html', context)
 
 
-@admin_only
+
 def updateTestimonial(request, testimonial_id):
     """this function handles the update of testimonials"""
 
@@ -113,7 +113,7 @@ def updateTestimonial(request, testimonial_id):
     return render(request, 'mains/testimonial.html', context)
 
 
-@admin_only
+
 def deleteTestimonial(request, testimonial_id):
     """this function handles the removal of testimonials"""
 
