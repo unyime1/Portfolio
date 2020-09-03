@@ -1,0 +1,121 @@
+{% extends 'mains/template.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    #loadingmsg {
+    color: black;
+      background: #fff; 
+      padding: 10px;
+      position: fixed;
+      top: 50%;
+      left: 30%;
+      z-index: 100;
+      margin-bottom: -25%;
+    
+    }
+    #loadingover {
+    background: black;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+  }
+</style>
+
+   <!-- Masthead-->
+    <header class="masthead" style="background-image: url('/static/images/header-bg.jpg')">  
+        <div class="container">
+            <div class="masthead-heading text-uppercase">Start A Project</div>
+           
+        </div>
+    </header>
+        <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% if messages %}
+                    {% include 'mains/messages.html' %} 
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id='loadingmsg' style='display: none;'>Sending... Please wait...</div>
+                        <div id='loadingover' style='display: none;'></div>
+                    </div>
+                </div>
+
+                <form method="POST" action="" onsubmit=showLoading()>
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{form.full_name|as_crispy_field}}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{form.phone_number|as_crispy_field}}
+                        </div>
+                        
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.email|as_crispy_field}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.project_title|as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{form.project_description|as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{form.budget|as_crispy_field}}
+                        </div>
+
+                        <div class="col-md-6">
+                            {{form.currency|as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                       <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Send</button> 
+                       </div>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <hr>
+    
+    <script>
+        function showLoading() {
+        document.getElementById('loadingmsg').style.display = 'block';
+        document.getElementById('loadingover').style.display = 'block';
+        }
+    </script>
+{% endblock %}

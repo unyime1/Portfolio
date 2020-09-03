@@ -54,3 +54,16 @@ class Testimonial(models.Model):
         except:
             url = ''
         return url
+
+
+class ProductDevelopment(models.Model):
+    """this class handles the product development table"""
+    full_name = models.CharField(max_length=500, null=True, blank=True)
+    phone_number = models.CharField(max_length=500, null=True, blank=True)
+    email = models.CharField(max_length=500, null=True, blank=True)
+    project_title = models.CharField(max_length=500, null=True, blank=True)
+    project_description = models.CharField(max_length=5000, null=True, blank=True)
+    budget = models.CharField(max_length=500, null=True, blank=True)
+    currency = models.CharField(max_length=500, null=True, blank=True)
+    
+    

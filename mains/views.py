@@ -121,3 +121,19 @@ def deleteTestimonial(request, testimonial_id):
     testimonial.delete()
     return redirect('home')
 
+
+def productDevelopment(request):
+    """this function handles the product development view"""
+
+    form = productDevelopmentForm()
+    if request.method == "POST":
+        form = productDevelopmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Hi, I have just received your message. I will get back to you shortly. ')
+            return redirect('development')
+    else:
+        form = productDevelopmentForm()
+
+    context = {'form':form,}
+    return render(request, 'mains/development-form.html', context)

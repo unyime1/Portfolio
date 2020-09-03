@@ -41,6 +41,8 @@ class projectForm(ModelForm):
         fields = '__all__'
 
 
+
+
 class testimonialForm(ModelForm):
     """this form handles the addition of post to site"""
     name = forms.CharField(max_length=600, required=True, label='Name',
@@ -56,4 +58,39 @@ class testimonialForm(ModelForm):
 
     class Meta:
         model = Testimonial
+        fields = '__all__'
+
+
+CURRENCY = (
+    ('', ''),
+    ('Naira', 'Naira'),
+    ('Dollars', 'Dollars'),
+    ('Euros', 'Euros'),
+    ('Pounds', 'Pounds'),
+)
+
+class productDevelopmentForm(ModelForm):
+    """this form handles the product development form"""
+    full_name = forms.CharField(max_length=300, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'Full Name(required)'}))
+ 
+    phone_number = forms.CharField(max_length=300, required=True, label='',
+                widget=forms.TextInput(attrs={'type':'number','placeholder': 'Phone Number(required)'}))
+    
+    email = forms.EmailField(max_length=300, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'Email(required)'}))
+    
+    project_title = forms.CharField(max_length=400, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'What type of web product do you need?(required)'}))
+    
+    project_description = forms.CharField(max_length=4000, required=False, label='',
+                widget=forms.Textarea(attrs={'placeholder': 'What features do you want your product to have?(optional)'}))
+ 
+    budget = forms.CharField(max_length=400, required=False, label='',
+                widget=forms.TextInput(attrs={'type':'number','placeholder': 'Enter your budget(optional)'}))
+
+    currency = forms.ChoiceField(choices=CURRENCY, label='', required=False)
+ 
+    class Meta:
+        model = ProductDevelopment
         fields = '__all__'

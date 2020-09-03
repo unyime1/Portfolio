@@ -10639,3 +10639,30 @@ section#contact form#contactForm :-ms-input-placeholder {
   }
 
 }
+
+/* Get Startet Button */
+.get-started-btn {
+  margin-left: 25px;
+  background: #e03a3c;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.get-started-btn:hover {
+  background: #111111;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 992px) {
+  .get-started-btn {
+    margin: 0 48px 0 0;
+    padding: 6px 18px;
+  }
+}

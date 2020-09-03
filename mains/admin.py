@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Contact)
 admin.site.register(Project)
 admin.site.register(Testimonial)
+admin.site.register(ProductDevelopment) 
