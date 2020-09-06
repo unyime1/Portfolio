@@ -53,7 +53,7 @@ def addProjects(request):
 
 
 def updateProject(request, project_id):
-    """this function handles post updates"""
+    """this function handles project updates"""
 
     project = Project.objects.get(id=project_id)
     form = projectForm(instance=project)
