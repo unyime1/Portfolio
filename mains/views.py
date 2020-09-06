@@ -53,6 +53,7 @@ def updateProject(request, project_id):
         form = projectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your project has been updated')
             return redirect('project')
     else:
         form = projectForm(instance=project)
@@ -67,6 +68,7 @@ def deleteProject(request, project_id):
 
     project = Project.objects.get(id=project_id)
     project.delete()
+    messages.success(request, 'Your project has been deleted')
     return redirect('home')
 
 
@@ -97,6 +99,7 @@ def updateTestimonial(request, testimonial_id):
         form = testimonialForm(request.POST, request.FILES, instance=testimonial)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your testimonial has been updated')
             return redirect('testimonial')
     else:
         form = testimonialForm(instance=testimonial)
@@ -111,7 +114,8 @@ def deleteTestimonial(request, testimonial_id):
 
     testimonial = Testimonial.objects.get(id=testimonial_id)
     testimonial.delete()
-    return redirect('home')
+    messages.success(request, 'Your testimonial has been deleted')
+    return redirect('blog')
 
 
 def productDevelopment(request):

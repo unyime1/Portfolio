@@ -5,7 +5,7 @@
 {% block content %}
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/static/images/home-background.jpg')">
+    <header class="masthead" style="background-image: url('/static/images/header-bg.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -21,6 +21,13 @@
     </header>
   
     <!-- Main Content -->
+    <div class="row">
+      <div class="col-md-12">
+          {% if messages %}
+              {% include 'mains/messages.html' %} 
+          {% endif %}
+      </div>
+    </div>
     
     <div class="container">
       <hr>
@@ -28,14 +35,14 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           {% for post in post_page %}
             <div class="post-preview">
-              <a href="{% url 'posts' post.slug %}">
+              <a href="{% url 'posts' post.slug %}" style="color: rgb(21, 21, 114);">
                 <h2 class="post-title" style="font-size: 25px; font-family:ABeeZee">
                   {{post.title}}
                 </h2>
-                <h3 class="post-subtitle"  style="font-size: 22px; font-family:ABeeZee">
-                  {{post.subtitle}}
-                </h3>
               </a>
+              <h3 class="post-subtitle"  style="font-size: 22px; font-family:ABeeZee">
+                {{post.subtitle}}
+              </h3>
               <p class="post-meta">Posted by
                 {{post.author|title}} on 
                 {{post.date_published}}</p>

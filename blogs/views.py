@@ -36,6 +36,7 @@ def addPost(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, 'Your post has been published')
             return redirect('blog')
     else:
         form = postForm()
@@ -56,6 +57,7 @@ def updatePost(request, post_id):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, 'Your post has been updated')
             return redirect('blog')
     else:
         form = postForm(instance=post)
@@ -70,6 +72,7 @@ def deletePost(request, post_id):
 
     post = Post.objects.get(id=post_id)
     post.delete()
+    messages.success(request, 'Your post has been deleted')
     return redirect('blog')
     
 
