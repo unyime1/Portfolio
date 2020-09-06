@@ -62,7 +62,7 @@ class testimonialForm(ModelForm):
 
 
 CURRENCY = (
-    ('', ''),
+    ('Currency', 'Currency'),
     ('Naira', 'Naira'),
     ('Dollars', 'Dollars'),
     ('Euros', 'Euros'),
@@ -93,4 +93,23 @@ class productDevelopmentForm(ModelForm):
  
     class Meta:
         model = ProductDevelopment
+        fields = '__all__'
+
+
+class ContactForm(ModelForm):
+    """this form handles the addition of post to site"""
+    name = forms.CharField(max_length=600, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'Name(required)'}))
+ 
+    email = forms.CharField(max_length=600, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'Email(required)'}))
+    
+    subject = forms.CharField(max_length=600, required=True, label='',
+                widget=forms.TextInput(attrs={'placeholder': 'Subject(required)'}))
+    
+    message = forms.CharField(max_length=600, required=True, label='',
+                widget=forms.Textarea(attrs={'placeholder': 'Message(required)'}))
+
+    class Meta:
+        model = Contact
         fields = '__all__'

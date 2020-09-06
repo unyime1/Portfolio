@@ -9,28 +9,19 @@ from blogs.decorators import *
 def home(request):
     """this function handles the main view"""
     projects = Project.objects.all()
-    testimonials = Testimonial.objects.all()
-
+    form = ContactForm()
     if request.method == 'POST':
-        #get both the username and password
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            print(name)
+            form.save()
 
-        contact = Contact.objects.create(
-            name=name,
-            email=email,
-            subject=subject,
-            message=message,
-        )
-        contact.save()
-
-        
-        messages.info(request, 'Hello ' + name.title() + ', your message has been sent. I will get back to you shortly.')
-        return redirect('home')
-
-    context = {'projects':projects, 'testimonials':testimonials,}
+            messages.info(request, 'Hello ' + name.title() + ', your message has been sent. I will get back to you shortly.')
+            return redirect('home')
+    else:
+        form = ContactForm()
+    context = {'projects':projects, 'form':form, }
     return render(request, 'mains/index.html', context)
 
 
@@ -42,8 +33,9 @@ def addProjects(request):
         form = projectForm(request.POST, request.FILES)
         if form.is_valid(): 
             form.save()
-            return redirect('project')
+
             messages.success(request, 'Your project is saved')
+            return redirect('project')
     else:
         form = projectForm()
 
@@ -86,8 +78,8 @@ def addTestimonial(request):
         form = testimonialForm(request.POST, request.FILES)
         if form.is_valid(): 
             form.save()
-            return redirect('testimonial')
             messages.success(request, 'Your testimonial is saved')
+            return redirect('testimonial')    
     else:
         form = testimonialForm()
 
