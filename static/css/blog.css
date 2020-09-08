@@ -434,3 +434,8 @@
   font-family: 'Alegreya SC';
   color: #fff;
 }
+
+
+.asteriskField{
+  display: none;
+}
