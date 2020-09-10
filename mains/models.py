@@ -8,7 +8,8 @@ class Contact(models.Model):
     email = models.CharField(max_length=200, null=True)
     subject = models.CharField(max_length=200, null=True)
     message = models.TextField(null=True)
-
+    date = models.DateTimeField(auto_now_add=True, null=True)
+    
     def __str__(self):
         return str(self.name)
 
@@ -65,5 +66,8 @@ class ProductDevelopment(models.Model):
     project_description = models.CharField(max_length=5000, null=True, blank=True)
     budget = models.CharField(max_length=500, null=True, blank=True)
     currency = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.project_title)
     
     

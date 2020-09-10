@@ -4,24 +4,6 @@ from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 from .models import *
 
 
-class ContactForm(ModelForm):
-    """this class handles the contact form"""
-    first_name = forms.CharField(max_length=100, required=True, label='',
-                    widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-    last_name = forms.CharField(max_length=100, required=True, label='',
-                    widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-    email = forms.EmailField(max_length=100, required=True, label='',
-                    widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    subject = forms.CharField(max_length=180, required=True, label='',
-                    widget=forms.TextInput(attrs={'placeholder': 'Subject'}))
-    message = forms.CharField(max_length=3000, required=True, label='',
-                    widget=forms.Textarea(attrs={'placeholder': 'Message'}))
-
-    class Meta:
-        model = Contact 
-        fields = '__all__'  
-
-
 
 class projectForm(ModelForm):
     """this form handles the addition of post to site"""
@@ -101,7 +83,7 @@ class ContactForm(ModelForm):
     name = forms.CharField(max_length=600, required=True, label='',
                 widget=forms.TextInput(attrs={'placeholder': 'Name(required)'}))
  
-    email = forms.CharField(max_length=600, required=True, label='',
+    email = forms.EmailField(max_length=600, required=True, label='',
                 widget=forms.TextInput(attrs={'placeholder': 'Email(required)'}))
     
     subject = forms.CharField(max_length=600, required=True, label='',

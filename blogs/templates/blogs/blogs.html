@@ -47,7 +47,7 @@
               </h3>
               <p class="post-meta">Posted by
                 {{post.author|title}} on 
-                {{post.date_published}}</p>
+                {{post.date_published|date:"SHORT_DATE_FORMAT"}}</p>
             </div>
             <hr>
           {% endfor %}

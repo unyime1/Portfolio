@@ -58,3 +58,35 @@ def testimonialList(request):
     return render(request, 'admins/all_testimonials.html', context)
 
 
+
+def contactList(request):
+    """this function handles admin contacts page"""
+
+    contacts = Contact.objects.all().order_by('-date')
+
+    context = {
+        'contacts':contacts
+    }
+    return render(request, 'admins/all_contacts.html', context)
+
+
+
+def viewMessage(request, contact_id):
+    """this function handles admin message page"""
+
+    contact = Contact.objects.get(id=contact_id)
+
+    context = {
+        'contact':contact
+    }
+    return render(request, 'admins/contact_message.html', context)
+
+
+
+def deleteMessage(request, contact_id):
+    """this function handles admin contacts page"""
+
+    contact = Contact.objects.get(id=contact_id)
+    contact.delete()
+    messages.info(request, 'The message has been deleted')
+    return redirect('admin_panel')

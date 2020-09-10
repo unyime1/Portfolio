@@ -14,7 +14,6 @@ def home(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            print(name)
             form.save()
 
             messages.info(request, 'Hello ' + name.title() + ', your message has been sent. I will get back to you shortly.')
