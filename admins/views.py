@@ -23,3 +23,38 @@ def adminDashboard(request):
     return render(request, 'admins/dashboard.html', context)
 
 
+def postList(request):
+    """this function handles the all posts page"""
+
+    posts = Post.objects.all().order_by('-date_published')
+
+    context = {
+        'posts':posts,
+    }
+    return render(request, 'admins/all_posts.html', context)
+
+
+def projectList(request):
+    """this function handles the all projects page"""
+
+    projects = Project.objects.all()
+
+    context = {
+        'projects':projects
+    }
+    return render(request, 'admins/all_projects.html', context)
+
+
+
+
+def testimonialList(request):
+    """this function handles the all testimonials page"""
+
+    testimonials = Testimonial.objects.all()
+
+    context = {
+        'testimonials':testimonials
+    }
+    return render(request, 'admins/all_testimonials.html', context)
+
+

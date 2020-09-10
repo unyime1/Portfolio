@@ -55,7 +55,7 @@ def updatePost(request, post_id):
     if request.method == "POST":
         form = postForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save(commit=False) 
             post.author = request.user
             post.save()
             messages.success(request, 'Your post has been updated')

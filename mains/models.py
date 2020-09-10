@@ -49,7 +49,7 @@ class Testimonial(models.Model):
     @property
     def imageURL(self):
         """this function solves the error associated with empty image fields"""
-        try:
+        try: 
             url = self.image.url
         except:
             url = ''
