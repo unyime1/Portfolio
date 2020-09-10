@@ -26,11 +26,13 @@ def blog(request):
     return render(request, 'blogs/blogs.html', context) 
 
 
-@admin_only
+
 def addPost(request):
     """this function returns the add post view"""
 
     form = postForm()
+    template_tag = 'Add'
+
     if request.method == "POST":
         form = postForm(request.POST, request.FILES)
         if form.is_valid():
@@ -38,20 +40,22 @@ def addPost(request):
             post.author = request.user
             post.save()
             messages.success(request, 'Your post has been published')
-            return redirect('blog')
+            return redirect('admin_panel')
     else:
         form = postForm()
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'blogs/add_post.html', context)
 
 
-@admin_only
+
 def updatePost(request, post_id):
     """this function handles post updates"""
 
     post = Post.objects.get(id=post_id)
     form = postForm(instance=post)
+    template_tag = 'Update'
+
     if request.method == "POST":
         form = postForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -59,22 +63,22 @@ def updatePost(request, post_id):
             post.author = request.user
             post.save()
             messages.success(request, 'Your post has been updated')
-            return redirect('blog')
+            return redirect('admin_panel')
     else:
         form = postForm(instance=post)
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'blogs/add_post.html', context)
 
 
-@admin_only
+
 def deletePost(request, post_id):
     """this function handles the removal of posts"""
 
     post = Post.objects.get(id=post_id)
     post.delete()
     messages.success(request, 'Your post has been deleted')
-    return redirect('blog')
+    return redirect('admin_panel')
     
 
 def postPage(request, slug_id):

@@ -28,6 +28,7 @@ def home(request):
 def addProjects(request):
     """this function handles the add project view"""
     form = projectForm()
+    template_tag = "Add"
     
     if request.method == 'POST':
         form = projectForm(request.POST, request.FILES)
@@ -35,11 +36,11 @@ def addProjects(request):
             form.save()
 
             messages.success(request, 'Your project is saved')
-            return redirect('project')
+            return redirect('admin_panel')
     else:
         form = projectForm()
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'mains/projects-form.html', context)
 
 
@@ -49,16 +50,18 @@ def updateProject(request, project_id):
 
     project = Project.objects.get(id=project_id)
     form = projectForm(instance=project)
+    template_tag = "Update"
+
     if request.method == "POST":
         form = projectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your project has been updated')
-            return redirect('project')
+            return redirect('admin_panel')
     else:
         form = projectForm(instance=project)
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'mains/projects-form.html', context)
 
 
@@ -69,23 +72,24 @@ def deleteProject(request, project_id):
     project = Project.objects.get(id=project_id)
     project.delete()
     messages.success(request, 'Your project has been deleted')
-    return redirect('home')
+    return redirect('admin_panel')
 
 
 def addTestimonial(request):
     """this function handles the addition of testimonials"""
     form = testimonialForm()
+    template_tag = "Add"
     
     if request.method == 'POST':
         form = testimonialForm(request.POST, request.FILES)
         if form.is_valid(): 
             form.save()
             messages.success(request, 'Your testimonial is saved')
-            return redirect('testimonial')    
+            return redirect('admin_panel')    
     else:
         form = testimonialForm()
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'mains/testimonial.html', context)
 
 
@@ -95,16 +99,18 @@ def updateTestimonial(request, testimonial_id):
 
     testimonial = Testimonial.objects.get(id=testimonial_id)
     form = testimonialForm(instance=testimonial)
+    template_tag = "Update"
+
     if request.method == "POST":
         form = testimonialForm(request.POST, request.FILES, instance=testimonial)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your testimonial has been updated')
-            return redirect('testimonial')
+            return redirect('admin_panel')
     else:
         form = testimonialForm(instance=testimonial)
 
-    context = {'form':form,}
+    context = {'form':form, 'template_tag':template_tag}
     return render(request, 'mains/testimonial.html', context)
 
 
@@ -115,7 +121,7 @@ def deleteTestimonial(request, testimonial_id):
     testimonial = Testimonial.objects.get(id=testimonial_id)
     testimonial.delete()
     messages.success(request, 'Your testimonial has been deleted')
-    return redirect('blog')
+    return redirect('admin_panel')
 
 
 def productDevelopment(request):
