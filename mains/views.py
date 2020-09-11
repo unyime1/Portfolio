@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from django.contrib import messages 
@@ -24,6 +25,7 @@ def home(request):
     return render(request, 'mains/index.html', context)
 
 
+@login_required(login_url='home')
 def addProjects(request):
     """this function handles the add project view"""
     form = projectForm()
@@ -44,6 +46,7 @@ def addProjects(request):
 
 
 
+@login_required(login_url='home')
 def updateProject(request, project_id):
     """this function handles project updates"""
 
@@ -65,6 +68,7 @@ def updateProject(request, project_id):
 
 
 
+@login_required(login_url='home')
 def deleteProject(request, project_id):
     """this function handles the removal of projects"""
 
@@ -74,6 +78,7 @@ def deleteProject(request, project_id):
     return redirect('admin_panel')
 
 
+@login_required(login_url='home')
 def addTestimonial(request):
     """this function handles the addition of testimonials"""
     form = testimonialForm()
@@ -93,6 +98,7 @@ def addTestimonial(request):
 
 
 
+@login_required(login_url='home')
 def updateTestimonial(request, testimonial_id):
     """this function handles the update of testimonials"""
 
@@ -114,6 +120,7 @@ def updateTestimonial(request, testimonial_id):
 
 
 
+@login_required(login_url='home')
 def deleteTestimonial(request, testimonial_id):
     """this function handles the removal of testimonials"""
 

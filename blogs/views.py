@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import *
@@ -27,6 +28,7 @@ def blog(request):
 
 
 
+@login_required(login_url='home')
 def addPost(request):
     """this function returns the add post view"""
 
@@ -49,6 +51,7 @@ def addPost(request):
 
 
 
+@login_required(login_url='home')
 def updatePost(request, post_id):
     """this function handles post updates"""
 
@@ -72,6 +75,7 @@ def updatePost(request, post_id):
 
 
 
+@login_required(login_url='home')
 def deletePost(request, post_id):
     """this function handles the removal of posts"""
 
