@@ -84,7 +84,7 @@ def viewMessage(request, contact_id):
 
 
 def deleteMessage(request, contact_id):
-    """this function handles admin contacts page"""
+    """this function handles the deletion of contact messages"""
 
     contact = Contact.objects.get(id=contact_id)
     contact.delete()
