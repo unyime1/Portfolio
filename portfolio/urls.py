@@ -29,4 +29,11 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
 ]
 
+
+#media URLS
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+#handle error pages
+handler404 = 'blogs.views.error_404'
+handler500 = 'blogs.views.error_500'

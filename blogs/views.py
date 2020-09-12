@@ -107,3 +107,15 @@ def contactPage(request):
     return render(request, 'blogs/contact.html', context)
 
 
+def error_404(request, exception):
+    """this view handles the 404 error page"""
+    
+    context = {}
+    return render(request, 'blogs/404.html', context)
+
+
+def error_500(request):
+    """this view handles the 500 error page"""
+    
+    context = {}
+    return render(request, 'blogs/500.html', context)
