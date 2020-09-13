@@ -16,12 +16,9 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content=" I am Unyime Etim, an innovative and deadline-driven developer with years of experience 
-        in designing and developing user-friendly and mobile-responsive web applications.
-        I build solutions that provide your business with an extensive online 
-        presence to meet your specific objectives and goals. " />
+        <meta name="description" content=" {{post.subtitle}} " />
         <meta name="author" content="" />
-        <title>Unyime Etim</title>
+        <title> {{post.title}} </title>
 
         <!-- Favicons -->
         <link href="{% static '/images/logo2.png' %}" rel="icon">
@@ -36,10 +33,12 @@
 
         <!-- site CSS-->
         <link rel="stylesheet" type="text/css"  href="{% static '/css/style.css' %}">
+        <!--<link rel="stylesheet" type="text/css"  href="{% static '/css/blog.css' %}"> -->
+        
     </head>
     <body id="page-top">
 
-        {% include 'mains/navbar.html' %}
+        {% include 'blogs/blog-navbar.html' %}
         
 
 
@@ -49,7 +48,7 @@
         {% endblock content %}
 
         
-        {% include 'mains/footer.html' %} 
+        {% include 'mains/footer.html' %}
 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
