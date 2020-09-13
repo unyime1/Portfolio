@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from .sitemap import PostSitemap, StaticViewSitemap
 
@@ -14,7 +15,8 @@ sitemaps = {
 urlpatterns = [
     #autogenerate sitemap
     path('sitemap.xml', sitemap, {'sitemaps':sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    
+    #robots.txt
+    path("robots.txt", TemplateView.as_view(template_name="blogs/robots.txt", content_type="text/plain")),
     path('blog/', views.blog, name='blog'),
     path('add_post/', views.addPost, name='add_post'),
     path('posts/<str:slug_id>/', views.postPage, name='posts'),
