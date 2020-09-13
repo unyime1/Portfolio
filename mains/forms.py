@@ -1,6 +1,9 @@
 from django.forms import ModelForm
 from django import forms
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
 from .models import *
 
 
@@ -68,14 +71,23 @@ class productDevelopmentForm(ModelForm):
     project_description = forms.CharField(max_length=4000, required=False, label='',
                 widget=forms.Textarea(attrs={'placeholder': 'What features do you want your product to have?(optional)'}))
  
-    budget = forms.CharField(max_length=400, required=False, label='',
-                widget=forms.TextInput(attrs={'type':'number','placeholder': 'Enter your budget(optional)'}))
+    budget = forms.CharField(max_length=400, required=True, label='',
+                widget=forms.TextInput(attrs={'type':'number','placeholder': 'Enter your budget(required)'}))
 
     currency = forms.ChoiceField(choices=CURRENCY, label='', required=False)
  
     class Meta:
         model = ProductDevelopment
         fields = '__all__'
+
+    def clean_currency(self):
+        """this function handles currency cleaning"""
+        currency = self.cleaned_data['currency']
+        
+        if currency == "Currency":
+            raise forms.ValidationError(_('Please select a valid currency'))
+        else:
+            return currency
 
 
 class ContactForm(ModelForm):
