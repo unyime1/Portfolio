@@ -38,15 +38,15 @@
           {% for post in post_page %}
             <div class="post-preview">
               <a href="{% url 'posts' post.slug %}" style="color: rgb(90, 71, 9);">
-                <h2 class="post-title" style="font-size: 25px; font-family:ABeeZee">
+                <h2 class="post-title" style="font-size: 18px; font-family:ABeeZee">
                   {{post.title}}
                 </h2>
               </a>
-              <h3 class="post-subtitle"  style="font-size: 22px; font-family:ABeeZee">
+              <h3 class="post-subtitle"  style="font-size: 18px; font-family:ABeeZee">
                 {{post.subtitle}}
               </h3>
               <p class="post-meta">Posted by
-                {{post.author|title}} on 
+                Unyime Etim on 
                 {{post.date_published|date:"SHORT_DATE_FORMAT"}}</p>
             </div>
             <hr>
