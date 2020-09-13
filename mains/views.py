@@ -137,8 +137,9 @@ def productDevelopment(request):
     if request.method == "POST":
         form = productDevelopmentForm(request.POST)
         if form.is_valid():
+            full_name = form.cleaned_data['full_name']
             form.save()
-            messages.success(request, 'Hi, I have just received your message. I will get back to you shortly. ')
+            messages.success(request, 'Hello' + str(full_name) + ', I have just received your request. I will get back to you shortly. ')
             return redirect('development')
     else:
         form = productDevelopmentForm()
