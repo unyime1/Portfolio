@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
+
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
@@ -143,6 +143,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -192,13 +193,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images') #defines profile picture lo
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-#DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-#GS_BUCKET_NAME = 'my_new_portfolio_bucket'
-#STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-#STATIC_URL = 'https://storage.googleapis.com/my_new_portfolio_bucket/'
-#GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-#    os.path.join(here, 'portfolio-a614a4394b44.json') # see step 3
-#)
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'my_new_portfolio_bucket'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATIC_URL = 'https://storage.googleapis.com/my_new_portfolio_bucket/'
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(here, 'portfolio-a614a4394b44.json') # see step 3
+)
 
 
 #S3 BUCKETS CONFIG
