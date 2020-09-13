@@ -1,9 +1,20 @@
 from django.urls import path
-
+from django.contrib.sitemaps.views import sitemap
+from .sitemap import PostSitemap, StaticViewSitemap
 
 from . import views
 
+sitemaps = {
+    'posts': PostSitemap,
+    'static': StaticViewSitemap,
+}
+
+
+
 urlpatterns = [
+    #autogenerate sitemap
+    path('sitemap.xml', sitemap, {'sitemaps':sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    
     path('blog/', views.blog, name='blog'),
     path('add_post/', views.addPost, name='add_post'),
     path('posts/<str:slug_id>/', views.postPage, name='posts'),
