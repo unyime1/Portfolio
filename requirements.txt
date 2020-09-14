@@ -9,6 +9,7 @@ chardet==3.0.4
 distlib==0.3.1
 Django==3.0.8
 django-crispy-forms==1.9.1
+django-social-share==2.0.0
 django-storages==1.9.1
 django-summernote==0.8.11.6
 docutils==0.15.2
