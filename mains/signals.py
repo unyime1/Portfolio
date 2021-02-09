@@ -35,7 +35,7 @@ def development_email(sender, instance, created, **kwargs):
             'Project Request', #title
             dev_message, #message
             'lordunyime@gmail.com', #from
-            ['unyime_etim58@yahoo.com'], #to
+            ['contact@unyimeetim.com'], #to
             connection=connection,
         )
         
